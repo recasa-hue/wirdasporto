@@ -154,10 +154,11 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.4rem 1.5rem;
+      padding: 1.6rem 1.8rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
       text-decoration: none;
       color: inherit;
       transition: background var(--transition), border-color var(--transition),
@@ -187,50 +188,25 @@
     }
 
     .card-icon {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      flex-shrink: 0;
       line-height: 1;
     }
 
     .card-name {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.35rem;
+      font-weight: 700;
       color: var(--text);
+      flex: 1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .card-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      flex: 1;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.3rem;
-    }
-
-    .card-lang {
-      font-size: 0.73rem;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-    }
-
     .card-arrow {
-      margin-left: auto;
+      flex-shrink: 0;
       color: var(--accent2);
-      font-size: 1rem;
+      font-size: 1.2rem;
       transition: transform var(--transition);
     }
 
@@ -375,24 +351,16 @@
     <div id="projects-grid">
 
       <!-- ── Kartu Manual (selalu tampil) ── -->
-      <a class="card" href="https://wirdatuss.netlify.app/digitizen.html" rel="noopener noreferrer">
+      <a class="card" href="https://wirdatuss.netlify.app/digitizen.html" target="_blank" rel="noopener noreferrer">
         <div class="card-icon">🌐</div>
         <div class="card-name">Digi Citizen</div>
-        <div class="card-desc">Demo project</div>
-        <div class="card-footer">
-          <span class="card-lang">HTML</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <span class="card-arrow">→</span>
       </a>
 
-      <a class="card" href="https://wirdatuss.netlify.app/nyambi.html" rel="noopener noreferrer">
+      <a class="card" href="https://wirdatuss.netlify.app/nyambi.html" target="_blank" rel="noopener noreferrer">
         <div class="card-icon">🌐</div>
         <div class="card-name">Nyambi</div>
-        <div class="card-desc">Demo project</div>
-        <div class="card-footer">
-          <span class="card-lang">HTML</span>
-          <span class="card-arrow">→</span>
-        </div>
+        <span class="card-arrow">→</span>
       </a>
 
       <!-- ── Kartu tambahan dari GitHub (otomatis, jika repo tersedia) ── -->
@@ -473,11 +441,7 @@
           link.innerHTML = `
             <div class="card-icon">🌐</div>
             <div class="card-name">${title}</div>
-            <div class="card-desc">Demo project</div>
-            <div class="card-footer">
-              <span class="card-lang">HTML</span>
-              <span class="card-arrow">→</span>
-            </div>`;
+            <span class="card-arrow">→</span>`;
 
           grid.appendChild(link);
         });
