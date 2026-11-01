@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wirdatus — Demo Projects</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ───────────────── Reset & Base ───────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ── Dark mode (default) ── */
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --border: #2e2e42;
+      --accent: #7c6af7;
+      --accent2: #a78bfa;
+      --text: #e8e6f0;
+      --muted: #8b87a8;
+      --card-bg: #16161f;
+      --card-hover: #1f1f2e;
+      --radius: 14px;
+      --transition: 0.25s ease;
+    }
+
+    /* ── Light mode ── */
+    :root.light {
+      --bg: #f5f4ff;
+      --surface: #ffffff;
+      --border: #d4d0f0;
+      --accent: #6c5ce7;
+      --accent2: #7c6af7;
+      --text: #1a1730;
+      --muted: #6b6890;
+      --card-bg: #ffffff;
+      --card-hover: #ece9ff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    /* ───────────────── Hero Section ───────────────── */
+    .hero {
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #2d2452, #1e1e30);
+      border: 1px solid var(--border);
+      color: var(--accent2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ───────────────── Divider ───────────────── */
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 25%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title::before {
+      right: calc(50% + 7rem);
+    }
+
+    .section-title::after {
+      left: calc(50% + 7rem);
+    }
+
+    /* ───────────────── Project Grid ───────────────── */
+    .projects-wrapper {
+      width: 100%;
+      max-width: 900px;
+      padding-bottom: 5rem;
+    }
+
+    #projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ───────────────── Project Card ───────────────── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: inherit;
+      transition: background var(--transition), border-color var(--transition),
+        transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(124, 106, 247, 0.06), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(124, 106, 247, 0.15);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .card-lang {
+      font-size: 0.73rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      color: var(--accent2);
+      font-size: 1rem;
+      transition: transform var(--transition);
+    }
+
+    .card:hover .card-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ───────────────── Loading / Error States ───────────────── */
+    .status-row {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 0.8rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ───────────────── Footer ───────────────── */
+    footer {
+      margin-top: auto;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 900px;
+    }
+
+    footer a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ───────────────── Responsive ───────────────── */
+    @media (max-width: 480px) {
+
+      .section-title::before,
+      .section-title::after {
+        display: none;
+      }
+    }
+
+    /* ───────────────── Theme Toggle Button ───────────────── */
+    #theme-toggle {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 999;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      transition: background var(--transition), border-color var(--transition),
+        transform var(--transition), box-shadow var(--transition);
+    }
+
+    #theme-toggle:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(124, 106, 247, 0.25);
+    }
+
+    /* Animasi ikon saat klik */
+    #theme-toggle.spin-once {
+      animation: spin-once 0.4s ease;
+    }
+
+    @keyframes spin-once {
+      from {
+        transform: rotate(0deg) scale(1.1);
+      }
+
+      to {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    /* Sesuaikan badge di light mode */
+    :root.light .badge {
+      background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+      border-color: #c4b5fd;
+      color: var(--accent);
+    }
+
+    /* Gradient judul di light mode */
+    :root.light .hero h1 {
+      background: linear-gradient(135deg, #1a1730 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Theme Toggle ── -->
+  <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle mode">🌙</button>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <span class="badge">✦ Portfolio</span>
+    <h1>Welcome to Wirdatus'<br>Demo Projects</h1>
+    <p>
+      A curated space showcasing interactive web projects created for learning,
+      exploration, and fun — feel free to click around!
+    </p>
+  </section>
+
+  <!-- ── Project Cards ── -->
+  <div class="projects-wrapper">
+    <p class="section-title">Projects</p>
+    <div id="projects-grid">
+
+      <!-- ── Kartu Manual (selalu tampil) ── -->
+      <a class="card" href="https://wirdatuss.netlify.app/digicitizen.html" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon">🌐</div>
+        <div class="card-name">Digi Citizen</div>
+        <div class="card-desc">Demo project — klik untuk membuka.</div>
+        <div class="card-footer">
+          <span class="card-lang">HTML</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://wirdatuss.netlify.app/nyambi.html" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon">🌐</div>
+        <div class="card-name">Nyambi</div>
+        <div class="card-desc">Demo project — klik untuk membuka.</div>
+        <div class="card-footer">
+          <span class="card-lang">HTML</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- ── Kartu tambahan dari GitHub (otomatis, jika repo tersedia) ── -->
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    Built with ♥ by Wirdatus
+  </footer>
+
+  <script>
+    /* ──────────────────────────────────────────────────────────
+       CONFIG
+    ────────────────────────────────────────────────────────── */
+    const GITHUB_USERNAME = 'recasa-hue';
+    const REPO_NAME = 'wirdasporto';
+
+    // File HTML yang tidak ingin ditampilkan sebagai kartu otomatis
+    // (sudah ada sebagai kartu manual di atas)
+    const EXCLUDED_FILES = ['index.html', 'digicitizen.html', 'nyambi.html'];
+
+    // Base URL Netlify — kartu akan mengarah ke sini
+    const BASE_URL = 'https://wirdatuss.netlify.app/';
+
+    /* ──────────────────────────────────────────────────────────
+       Ubah nama file menjadi judul yang lebih rapi
+       Contoh: "nyambi.html"       → "Nyambi"
+               "digi-citizen.html" → "Digi Citizen"
+    ────────────────────────────────────────────────────────── */
+    function toTitle(filename) {
+      return filename
+        .replace(/\.html$/i, '')
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       Fetch file .html tambahan dari GitHub Contents API
+       (diam-diam gagal jika repo belum tersedia)
+    ────────────────────────────────────────────────────────── */
+    async function loadProjects() {
+      const grid = document.getElementById('projects-grid');
+
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/`,
+          { headers: { Accept: 'application/vnd.github+json' } }
+        );
+
+        if (!res.ok) return; // diam jika gagal (repo belum ada / private)
+
+        const items = await res.json();
+
+        // Saring: hanya file .html, bukan yang dikecualikan / sudah manual
+        const htmlFiles = items.filter(item =>
+          item.type === 'file' &&
+          item.name.toLowerCase().endsWith('.html') &&
+          !EXCLUDED_FILES.includes(item.name)
+        );
+
+        if (htmlFiles.length === 0) return;
+
+        // Urutkan A–Z berdasarkan nama file
+        htmlFiles.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Buat kartu untuk tiap file baru
+        htmlFiles.forEach(file => {
+          const title = toTitle(file.name);
+          const url = BASE_URL + file.name;
+
+          const link = document.createElement('a');
+          link.className = 'card';
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+
+          link.innerHTML = `
+            <div class="card-icon">🌐</div>
+            <div class="card-name">${title}</div>
+            <div class="card-desc">Demo project — klik untuk membuka.</div>
+            <div class="card-footer">
+              <span class="card-lang">HTML</span>
+              <span class="card-arrow">→</span>
+            </div>`;
+
+          grid.appendChild(link);
+        });
+
+      } catch (_) {
+        // Gagal diam-diam — kartu manual tetap tampil
+      }
+    }
+
+    loadProjects();
+
+    /* ──────────────────────────────────────────────────────────
+       Light / Dark Mode Toggle
+    ────────────────────────────────────────────────────────── */
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // Muat preferensi tersimpan, atau ikuti preferensi sistem
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isLight = saved === 'light' || (!saved && !prefersDark);
+
+    if (isLight) {
+      html.classList.add('light');
+      btn.textContent = '☀️';
+    }
+
+    btn.addEventListener('click', () => {
+      html.classList.toggle('light');
+      const light = html.classList.contains('light');
+      btn.textContent = light ? '☀️' : '🌙';
+      localStorage.setItem('theme', light ? 'light' : 'dark');
+
+      // Animasi putar ikon
+      btn.classList.remove('spin-once');
+      void btn.offsetWidth; // reflow untuk restart animasi
+      btn.classList.add('spin-once');
+    });
+  </script>
+
+</body>
+
+</html>
