@@ -408,7 +408,10 @@
       try {
         const res = await fetch(
           `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/`,
-          { headers: { Accept: 'application/vnd.github+json' } }
+          {
+            headers: { Accept: 'application/vnd.github+json' },
+            cache: 'no-store'   // selalu ambil data terbaru, jangan pakai cache browser
+          }
         );
 
         if (!res.ok) return; // diam jika gagal (repo belum ada / private)
