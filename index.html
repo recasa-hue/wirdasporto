@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,41 +9,50 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ───────────────── Reset & Base ───────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     /* ── Dark mode (default) ── */
     :root {
-      --bg:        #0f0f13;
-      --surface:   #1a1a24;
-      --border:    #2e2e42;
-      --accent:    #7c6af7;
-      --accent2:   #a78bfa;
-      --text:      #e8e6f0;
-      --muted:     #8b87a8;
-      --card-bg:   #16161f;
-      --card-hover:#1f1f2e;
-      --radius:    14px;
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --border: #2e2e42;
+      --accent: #7c6af7;
+      --accent2: #a78bfa;
+      --text: #e8e6f0;
+      --muted: #8b87a8;
+      --card-bg: #16161f;
+      --card-hover: #1f1f2e;
+      --radius: 14px;
       --transition: 0.25s ease;
     }
 
     /* ── Light mode ── */
     :root.light {
-      --bg:        #f5f4ff;
-      --surface:   #ffffff;
-      --border:    #d4d0f0;
-      --accent:    #6c5ce7;
-      --accent2:   #7c6af7;
-      --text:      #1a1730;
-      --muted:     #6b6890;
-      --card-bg:   #ffffff;
-      --card-hover:#ece9ff;
+      --bg: #f5f4ff;
+      --surface: #ffffff;
+      --border: #d4d0f0;
+      --accent: #6c5ce7;
+      --accent2: #7c6af7;
+      --text: #1a1730;
+      --muted: #6b6890;
+      --card-bg: #ffffff;
+      --card-hover: #ece9ff;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -117,8 +127,14 @@
       height: 1px;
       background: var(--border);
     }
-    .section-title::before { right: calc(50% + 7rem); }
-    .section-title::after  { left:  calc(50% + 7rem); }
+
+    .section-title::before {
+      right: calc(50% + 7rem);
+    }
+
+    .section-title::after {
+      left: calc(50% + 7rem);
+    }
 
     /* ───────────────── Project Grid ───────────────── */
     .projects-wrapper {
@@ -145,7 +161,7 @@
       text-decoration: none;
       color: inherit;
       transition: background var(--transition), border-color var(--transition),
-                  transform var(--transition), box-shadow var(--transition);
+        transform var(--transition), box-shadow var(--transition);
       position: relative;
       overflow: hidden;
     }
@@ -154,7 +170,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(124,106,247,0.06), transparent 60%);
+      background: linear-gradient(135deg, rgba(124, 106, 247, 0.06), transparent 60%);
       opacity: 0;
       transition: opacity var(--transition);
     }
@@ -165,7 +181,10 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(124, 106, 247, 0.15);
     }
-    .card:hover::before { opacity: 1; }
+
+    .card:hover::before {
+      opacity: 1;
+    }
 
     .card-icon {
       font-size: 1.5rem;
@@ -202,7 +221,7 @@
     .card-lang {
       font-size: 0.73rem;
       color: var(--muted);
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
@@ -214,7 +233,10 @@
       font-size: 1rem;
       transition: transform var(--transition);
     }
-    .card:hover .card-arrow { transform: translateX(4px); }
+
+    .card:hover .card-arrow {
+      transform: translateX(4px);
+    }
 
     /* ───────────────── Loading / Error States ───────────────── */
     .status-row {
@@ -234,7 +256,12 @@
       animation: spin 0.8s linear infinite;
       margin-bottom: 0.8rem;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     /* ───────────────── Footer ───────────────── */
     footer {
@@ -252,12 +279,18 @@
       color: var(--accent2);
       text-decoration: none;
     }
-    footer a:hover { text-decoration: underline; }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     /* ───────────────── Responsive ───────────────── */
     @media (max-width: 480px) {
+
       .section-title::before,
-      .section-title::after { display: none; }
+      .section-title::after {
+        display: none;
+      }
     }
 
     /* ───────────────── Theme Toggle Button ───────────────── */
@@ -277,30 +310,40 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       transition: background var(--transition), border-color var(--transition),
-                  transform var(--transition), box-shadow var(--transition);
+        transform var(--transition), box-shadow var(--transition);
     }
+
     #theme-toggle:hover {
       background: var(--card-hover);
       border-color: var(--accent);
       transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(124,106,247,0.25);
+      box-shadow: 0 6px 20px rgba(124, 106, 247, 0.25);
     }
+
     /* Animasi ikon saat klik */
     #theme-toggle.spin-once {
       animation: spin-once 0.4s ease;
     }
+
     @keyframes spin-once {
-      from { transform: rotate(0deg) scale(1.1); }
-      to   { transform: rotate(360deg) scale(1); }
+      from {
+        transform: rotate(0deg) scale(1.1);
+      }
+
+      to {
+        transform: rotate(360deg) scale(1);
+      }
     }
+
     /* Sesuaikan badge di light mode */
     :root.light .badge {
       background: linear-gradient(135deg, #ede9fe, #ddd6fe);
       border-color: #c4b5fd;
       color: var(--accent);
     }
+
     /* Gradient judul di light mode */
     :root.light .hero h1 {
       background: linear-gradient(135deg, #1a1730 30%, var(--accent));
@@ -310,6 +353,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ── Theme Toggle ── -->
@@ -329,21 +373,35 @@
   <div class="projects-wrapper">
     <p class="section-title">Projects</p>
     <div id="projects-grid">
-      <!-- Cards are injected by JavaScript -->
-      <div class="status-row" id="loading-state">
-        <div class="spinner"></div>
-        <br>Loading projects…
-      </div>
+
+      <!-- ── Kartu Manual (selalu tampil) ── -->
+      <a class="card" href="https://wirdatuss.netlify.app/digicitizen.html" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon">🌐</div>
+        <div class="card-name">Digi Citizen</div>
+        <div class="card-desc">Demo project — klik untuk membuka.</div>
+        <div class="card-footer">
+          <span class="card-lang">HTML</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://wirdatuss.netlify.app/nyambi.html" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon">🌐</div>
+        <div class="card-name">Nyambi</div>
+        <div class="card-desc">Demo project — klik untuk membuka.</div>
+        <div class="card-footer">
+          <span class="card-lang">HTML</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- ── Kartu tambahan dari GitHub (otomatis, jika repo tersedia) ── -->
     </div>
   </div>
 
   <!-- ── Footer ── -->
   <footer>
-    Project list is auto-fetched from
-    <a href="https://github.com/recasa-hue/wirdasporto" target="_blank" rel="noopener">
-      github.com/recasa-hue/wirdasporto
-    </a>
-    · Built with ♥ by Wirdatus
+    Built with ♥ by Wirdatus
   </footer>
 
   <script>
@@ -351,10 +409,11 @@
        CONFIG
     ────────────────────────────────────────────────────────── */
     const GITHUB_USERNAME = 'recasa-hue';
-    const REPO_NAME       = 'wirdasporto';
+    const REPO_NAME = 'wirdasporto';
 
-    // File HTML yang tidak ingin ditampilkan sebagai kartu
-    const EXCLUDED_FILES  = ['index.html'];
+    // File HTML yang tidak ingin ditampilkan sebagai kartu otomatis
+    // (sudah ada sebagai kartu manual di atas)
+    const EXCLUDED_FILES = ['index.html', 'digicitizen.html', 'nyambi.html'];
 
     // Base URL Netlify — kartu akan mengarah ke sini
     const BASE_URL = 'https://wirdatuss.netlify.app/';
@@ -372,11 +431,11 @@
     }
 
     /* ──────────────────────────────────────────────────────────
-       Fetch daftar file .html dari GitHub Contents API
+       Fetch file .html tambahan dari GitHub Contents API
+       (diam-diam gagal jika repo belum tersedia)
     ────────────────────────────────────────────────────────── */
     async function loadProjects() {
-      const grid    = document.getElementById('projects-grid');
-      const loading = document.getElementById('loading-state');
+      const grid = document.getElementById('projects-grid');
 
       try {
         const res = await fetch(
@@ -384,37 +443,32 @@
           { headers: { Accept: 'application/vnd.github+json' } }
         );
 
-        if (!res.ok) throw new Error(`GitHub API responded with ${res.status}`);
+        if (!res.ok) return; // diam jika gagal (repo belum ada / private)
 
         const items = await res.json();
 
-        // Saring: hanya file .html, bukan yang dikecualikan
+        // Saring: hanya file .html, bukan yang dikecualikan / sudah manual
         const htmlFiles = items.filter(item =>
           item.type === 'file' &&
           item.name.toLowerCase().endsWith('.html') &&
           !EXCLUDED_FILES.includes(item.name)
         );
 
-        loading.remove();
-
-        if (htmlFiles.length === 0) {
-          grid.innerHTML = `<div class="status-row">Belum ada project yang di-upload. Segera hadir! 🚀</div>`;
-          return;
-        }
+        if (htmlFiles.length === 0) return;
 
         // Urutkan A–Z berdasarkan nama file
         htmlFiles.sort((a, b) => a.name.localeCompare(b.name));
 
-        // Buat kartu untuk tiap file
+        // Buat kartu untuk tiap file baru
         htmlFiles.forEach(file => {
           const title = toTitle(file.name);
-          const url   = BASE_URL + file.name;
+          const url = BASE_URL + file.name;
 
           const link = document.createElement('a');
           link.className = 'card';
-          link.href      = url;
-          link.target    = '_blank';
-          link.rel       = 'noopener noreferrer';
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
 
           link.innerHTML = `
             <div class="card-icon">🌐</div>
@@ -428,16 +482,8 @@
           grid.appendChild(link);
         });
 
-      } catch (err) {
-        loading.innerHTML = `
-          <p>⚠️ Tidak dapat memuat daftar project.</p>
-          <p style="font-size:0.8rem;margin-top:0.5rem;opacity:0.6">${err.message}</p>
-          <p style="margin-top:1rem">
-            <a href="https://github.com/${GITHUB_USERNAME}/${REPO_NAME}"
-               target="_blank" style="color:#a78bfa;text-decoration:none">
-              Lihat langsung di GitHub →
-            </a>
-          </p>`;
+      } catch (_) {
+        // Gagal diam-diam — kartu manual tetap tampil
       }
     }
 
@@ -446,7 +492,7 @@
     /* ──────────────────────────────────────────────────────────
        Light / Dark Mode Toggle
     ────────────────────────────────────────────────────────── */
-    const btn  = document.getElementById('theme-toggle');
+    const btn = document.getElementById('theme-toggle');
     const html = document.documentElement;
 
     // Muat preferensi tersimpan, atau ikuti preferensi sistem
@@ -473,5 +519,5 @@
   </script>
 
 </body>
-</html>
 
+</html>
