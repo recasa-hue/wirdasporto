@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nyambi – Prototype Aplikasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5F9;--card:#fff;--ink:#16202E;--mute:#5B6677;--pri:#0B6E69;--soft:#D8EFEC;--gold:#F2A900;--goldsoft:#FFF1CC;--bad:#B93A2B;--badsoft:#FBE3DF;--line:#E3E7EE;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1620;--card:#172230;--ink:#EAF0F7;--mute:#9AA7B8;--pri:#3CC5BC;--soft:#12302F;--goldsoft:#3A2F10;--badsoft:#3B1D1A;--line:#25344a}}
+:root[data-theme="dark"]{--bg:#0F1620;--card:#172230;--ink:#EAF0F7;--mute:#9AA7B8;--pri:#3CC5BC;--soft:#12302F;--goldsoft:#3A2F10;--badsoft:#3B1D1A;--line:#25344a}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font:15px/1.45 'Plus Jakarta Sans',system-ui,sans-serif}
+h1,h2,h3,.disp{font-family:'Bricolage Grotesque','Plus Jakarta Sans',sans-serif;letter-spacing:-.01em}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.app{max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden}
+@media(min-width:500px){.app{height:min(880px,100%);margin-top:max(0px,calc((100% - 880px)/2));border:1px solid var(--line);border-radius:28px}}
+.scr{flex:1;overflow-y:auto;padding:16px 16px 24px}
+.top{padding:14px 16px 6px;display:flex;align-items:center;gap:10px}
+.top h2{font-size:20px;flex:1}
+.back{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:10px}.sp{justify-content:space-between}
+.mute{color:var(--mute);font-size:13px}.b{font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--soft);color:var(--pri)}
+.pill.g{background:var(--goldsoft);color:#9a6a00}.pill.r{background:var(--badsoft);color:var(--bad)}
+@media (prefers-color-scheme:dark){.pill.g{color:var(--gold)}}
+.btn{width:100%;padding:13px;border-radius:12px;background:var(--pri);color:#fff;font-weight:600;margin-top:8px}
+@media (prefers-color-scheme:dark){.btn{color:#06201f}}
+.btn.o{background:none;border:1.5px solid var(--line);color:var(--ink)}.btn.d{background:var(--badsoft);color:var(--bad)}
+.btn[disabled]{opacity:.45}
+.price{font-family:'Bricolage Grotesque';font-weight:800;font-size:18px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px}
+.chip{padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);white-space:nowrap;font-size:13px}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--card);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--mute);padding:4px}
+.nav button.on{color:var(--pri);font-weight:600}
+.nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px;margin-bottom:12px}
+.seg button{flex:1;padding:8px;border-radius:9px;font-weight:600;font-size:13px;color:var(--mute)}.seg .on{background:var(--pri);color:#fff}
+@media (prefers-color-scheme:dark){.seg .on{color:#06201f}}
+.av{width:42px;height:42px;border-radius:50%;background:var(--soft);color:var(--pri);display:grid;place-items:center;font-weight:800;flex:none}
+.lock{background:var(--goldsoft);border-radius:14px;padding:12px;margin-bottom:12px;font-size:13px}
+.steps{list-style:none;padding:0;margin:6px 0 4px}
+.steps li{display:flex;gap:10px;padding:7px 0;font-size:14px;color:var(--mute)}
+.steps i{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-size:11px;font-style:normal}
+.steps li.done{color:var(--ink)}.steps li.done i{background:var(--pri);border-color:var(--pri);color:#fff}
+.steps li.now{color:var(--ink);font-weight:600}.steps li.now i{border-color:var(--pri)}
+label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.err{color:var(--bad);font-size:13px;margin-top:6px}
+.shade{position:absolute;inset:0;background:rgba(10,15,25,.5);display:flex;align-items:flex-end;z-index:5}
+.sheet{background:var(--card);width:100%;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:85%;overflow-y:auto}
+.opt{display:block;width:100%;text-align:left;padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-top:6px}
+.opt.on{border-color:var(--pri);background:var(--soft)}
+.toast{position:absolute;left:16px;right:16px;bottom:84px;background:var(--ink);color:var(--bg);padding:11px 14px;border-radius:12px;font-size:13px;z-index:9}
+.cam{height:130px;border-radius:12px;background:repeating-linear-gradient(45deg,var(--soft),var(--soft) 10px,var(--bg) 10px,var(--bg) 20px);display:grid;place-items:center;color:var(--pri);font-weight:600;text-align:center;font-size:13px}
+.big{font-size:30px}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+const TASKS=[
+{id:1,t:'Isi kuesioner skripsi (15 menit)',cat:'Responden',mode:'Daring',loc:'Dari mana saja',area:'Daring',pay:25000,dur:'15 menit',when:'Hari ini, 15.00–22.00',by:'Rina A.',r:4.9,n:34,d:'Isi kuesioner Google Form 24 pertanyaan tentang kebiasaan belajar. Syarat: mahasiswa aktif S1. Bukti: tangkapan layar halaman selesai.'},
+{id:2,t:'Transkripsi wawancara 30 menit',cat:'Transkripsi',mode:'Daring',loc:'Dari mana saja',area:'Daring',pay:60000,dur:'3 jam',when:'Besok, tenggat 20.00',by:'Dr. Hendra W.',r:4.8,n:71,d:'Ubah rekaman wawancara Bahasa Indonesia 30 menit menjadi teks (.docx), kata per kata. Format templat disediakan.'},
+{id:3,t:'Jaga meja registrasi seminar',cat:'Acara',mode:'Tempat umum',loc:'Gedung Serbaguna, Kampus',area:'1,2 km dari Anda',pay:80000,dur:'4 jam',when:'Sabtu, 08.00–12.00',by:'BEM Fakultas',r:4.7,n:22,d:'Mencatat kehadiran peserta dan membagikan name tag. Berpakaian rapi. Kontak lapangan: Dimas (panitia).'},
+{id:4,t:'Foto produk 20 item UMKM',cat:'UMKM',mode:'Tempat umum',loc:'Kafe Mitra, dekat kampus',area:'2,4 km dari Anda',pay:70000,dur:'2 jam',when:'Minggu, 10.00–12.00',by:'Dapur Bu Sari',r:5,n:9,d:'Foto 20 produk kemasan dengan latar putih. Ponsel sendiri boleh. Hasil dikirim lewat aplikasi.'}];
+const S={scr:'splash',tab:'jelajah',mode:'cari',acct:'basic',cat:'Semua',task:null,step:0,vstep:0,posted:[],sheet:null,toast:null,saldo:0,hist:[],stars:0};
+const rp=n=>'Rp'+n.toLocaleString('id-ID');
+const ic={jelajah:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',tugas:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',dompet:'<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14h2"/>',profil:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>'};
+const A=document.getElementById('app');
+function go(s,x){Object.assign(S,x||{});S.scr=s;draw()}
+function toast(m){S.toast=m;draw();setTimeout(()=>{S.toast=null;draw()},2200)}
+function sheet(k){S.sheet=k;draw()}
+function draw(){A.innerHTML=(V[S.scr]||V.main)()+(S.sheet?SH():'')+(S.toast?`<div class="toast" role="status">${S.toast}</div>`:'')}
+const hdr=(t,b)=>`<div class="top">${b?`<button class="back" aria-label="Kembali" onclick="${b}">‹</button>`:''}<h2>${t}</h2></div>`;
+const nav=()=>`<nav class="nav">${[['jelajah','Jelajah'],['tugas','Tugasku'],['dompet','Dompet'],['profil','Profil']].map(([k,l])=>`<button class="${S.tab==k?'on':''}" onclick="S.tab='${k}';go('main')"><svg viewBox="0 0 24 24">${ic[k]}</svg>${l}</button>`).join('')}</nav>`;
+const taskCard=t=>`<button class="card" style="display:block;width:100%;text-align:left" onclick="go('detail',{task:${t.id}})"><div class="row sp"><span class="pill">${t.cat}</span><span class="mute">${t.mode}</span></div><h3 style="font-size:16px;margin:8px 0 2px">${t.t}</h3><div class="mute">${t.area} · ${t.when}</div><div class="row sp" style="margin-top:10px"><span class="price">${rp(t.pay)}</span><span class="mute">${t.by} · ★ ${t.r}</span></div><div class="mute" style="margin-top:6px;font-size:12px">🔒 Dana sudah tertahan di Nyambi</div></button>`;
+const V={
+splash:()=>`<div class="scr" style="display:flex;flex-direction:column;justify-content:center;gap:14px"><div class="disp" style="font-size:54px;font-weight:800;color:var(--pri);line-height:1">nyambi</div><h1 style="font-size:26px">Kerja sambil kuliah, tanpa takut tertipu.</h1><p class="mute">Tugas harian fleksibel. Semua pengguna terverifikasi KTP. Upah ditahan aman sampai pekerjaan selesai.</p><label for="hp">Nomor HP</label><input id="hp" inputmode="tel" placeholder="0812 3456 7890" value="0812 3456 7890"><button class="btn" onclick="go('otp')">Kirim kode OTP</button><p class="mute" style="font-size:12px">Dengan masuk, Anda setuju pada syarat layanan dan kebijakan data pribadi (UU PDP).</p></div>`,
+otp:()=>hdr('Masukkan kode OTP','go(\'splash\')')+`<div class="scr"><p class="mute">Kode 4 digit dikirim lewat SMS ke 0812 •••• 7890.</p><div class="row" style="margin:18px 0">${[4,8,1,5].map(d=>`<input style="text-align:center;font-size:22px;font-weight:700" value="${d}" aria-label="digit">`).join('')}</div><button class="btn" onclick="S.tab='jelajah';go('main')">Masuk</button><p class="mute" style="margin-top:10px">Akun Anda akan berstatus <b>Basic</b>: bisa melihat tugas, belum bisa mengambil atau memasang.</p></div>`,
+main:()=>{let h='';
+ if(S.tab=='jelajah'){h=`<div class="seg"><button class="${S.mode=='cari'?'on':''}" onclick="S.mode='cari';draw()">Cari kerja</button><button class="${S.mode=='pasang'?'on':''}" onclick="S.mode='pasang';draw()">Pasang tugas</button></div>`;
+  if(S.mode=='cari'){h+=(S.acct=='basic'?`<div class="lock"><b>Akun Basic.</b> Verifikasi KTP untuk mengambil tugas. Lokasi tepat disamarkan sampai Anda mengambil tugas.<button class="btn" style="margin-top:8px" onclick="go('vrf',{vstep:0})">Verifikasi sekarang</button></div>`:`<div class="card row"><span class="pill">Terverifikasi</span><span class="mute">Jadwal luang: Sel, Kam 13.00–17.00 · <a href="#" onclick="toast('Jadwal ketersediaan disimpan');return false" style="color:var(--pri)">Ubah</a></span></div>`)+`<div class="chips">${['Semua','Responden','Transkripsi','Acara','UMKM'].map(c=>`<button class="chip ${S.cat==c?'on':''}" onclick="S.cat='${c}';draw()">${c}</button>`).join('')}</div>`+TASKS.filter(t=>S.cat=='Semua'||t.cat==S.cat).map(taskCard).join('')}
+  else h+=S.acct=='basic'?`<div class="lock"><b>Pasang tugas butuh akun Plus.</b> Verifikasi KTP dulu supaya pekerja percaya pada Anda.<button class="btn" onclick="go('vrf',{vstep:0})">Verifikasi sekarang</button></div>`:postForm()}
+ if(S.tab=='tugas')h=tugasku();
+ if(S.tab=='dompet')h=`<div class="card" style="background:var(--pri);color:#fff;border:0"><div style="opacity:.8;font-size:13px">Saldo bisa dicairkan</div><div class="price big">${rp(S.saldo)}</div><div style="opacity:.8;font-size:12px;margin-top:4px">Cair otomatis ke rekening atas nama sama dengan KTP</div></div><h3 style="margin:14px 0 8px">Riwayat</h3>${S.hist.length?S.hist.map(x=>`<div class="card row sp"><span>${x[0]}</span><b>${x[1]}</b></div>`).join(''):'<div class="card mute">Belum ada penghasilan. Ambil tugas pertama Anda di Jelajah.</div>'}`;
+ if(S.tab=='profil')h=profil();
+ const T={jelajah:S.mode=='cari'?'Tugas untukmu':'Pasang tugas',tugas:'Tugasku',dompet:'Dompet',profil:'Profil'};
+ return hdr(T[S.tab])+`<div class="scr">${h}</div>`+nav()},
+detail:()=>{const t=TASKS.find(x=>x.id==S.task);return hdr('Detail tugas',"go('main')")+`<div class="scr"><span class="pill">${t.cat}</span><h1 style="font-size:23px;margin:8px 0">${t.t}</h1><div class="price big">${rp(t.pay)}</div><div class="mute">${t.dur} · ${t.when}</div>
+<div class="card" style="margin-top:14px"><div class="b">Rincian pekerjaan</div><p style="margin-top:4px">${t.d}</p><p class="mute" style="margin-top:8px;font-size:12px">Deskripsi akan terkunci setelah Anda mengambil tugas. Perubahan perlu persetujuan Anda.</p></div>
+<div class="card"><div class="b">Lokasi</div><p>${t.mode=='Daring'?'Daring, dikerjakan dari mana saja':t.loc}</p>${S.acct=='basic'&&t.mode!='Daring'?'<p class="mute" style="font-size:12px">Titik tepat disamarkan untuk akun Basic.</p>':''}</div>
+<div class="card row"><div class="av">${t.by[0]}</div><div style="flex:1"><div class="b">${t.by} <span class="pill">Terverifikasi</span></div><div class="mute">★ ${t.r} · ${t.n} tugas · Bayar tepat waktu 98%</div></div></div>
+<div class="card" style="background:var(--soft);border:0">🔒 Upah ${rp(t.pay)} sudah tertahan. Cair setelah pemberi tugas konfirmasi, atau otomatis 24 jam setelah Anda unggah bukti.</div>
+${S.acct=='basic'?`<button class="btn" onclick="go('vrf',{vstep:0})">Verifikasi KTP untuk mengambil</button>`:`<button class="btn" onclick="sheet('ambil')">Ambil tugas</button>`}<button class="btn o" onclick="sheet('lapor')">Laporkan tugas ini</button></div>`},
+vrf:()=>{const L=['Foto KTP','Selfie liveness','Rekening atas nama KTP','Selesai'];
+ const body=[`<div class="cam">Arahkan kamera ke KTP<br>(bingkai otomatis)</div><p class="mute" style="margin:8px 0">Kami membaca nama, NIK, tanggal lahir, dan masa berlaku. Usia minimal 18 tahun.</p>`,`<div class="cam" style="border-radius:50%;width:150px;height:150px;margin:6px auto">Tengok ke kiri,<br>lalu kedip</div><p class="mute" style="margin:8px 0;text-align:center">Gerakan acak memastikan ini benar-benar Anda.</p>`,`<label>Jenis</label><select><option>GoPay</option><option>Bank</option><option>DANA</option></select><label>Nama pemilik</label><input value="NADINA N. HALIM" readonly><p class="mute" style="margin-top:6px">Harus sama dengan nama di KTP.</p>`,`<div style="text-align:center;padding:20px 0"><div class="big">✅</div><h2>Akun Plus aktif</h2><p class="mute">Foto KTP dan selfie mentah sudah dihapus. Kami hanya menyimpan status verifikasi.</p></div>`][S.vstep];
+ return hdr('Verifikasi identitas',"go('main')")+`<div class="scr"><ul class="steps">${L.map((l,i)=>`<li class="${i<S.vstep?'done':i==S.vstep?'now':''}"><i>${i<S.vstep?'✓':''}</i>${l}</li>`).join('')}</ul>${body}<button class="btn" onclick="${S.vstep<3?'S.vstep++;draw()':`S.acct='plus';toast('Selamat, Anda sekarang akun Plus');go('main')`}">${['Ambil foto KTP','Mulai selfie','Simpan rekening','Mulai nyambi'][S.vstep]}</button></div>`},
+bukti:()=>hdr('Unggah bukti kerja',"go('main')")+`<div class="scr"><div class="cam">Kamera aplikasi<br>cap waktu + lokasi otomatis</div><p class="mute" style="margin:8px 0">Bukti harus diambil lewat kamera aplikasi, bukan dari galeri.</p><label>Catatan untuk pemberi tugas</label><textarea rows="3">Semua 24 pertanyaan sudah terisi.</textarea><button class="btn" onclick="S.step=4;toast('Bukti terkirim. Menunggu konfirmasi 24 jam');S.tab='tugas';go('main')">Kirim bukti & tandai selesai</button></div>`};
+function postForm(){const p=S.posted.find(x=>x.open);return `<div class="card"><label for="pj" style="margin-top:0">Judul tugas</label><input id="pj" value="Input data kuesioner ke Excel"><label for="pk">Kategori</label><select id="pk"><option>Input data</option><option>Responden</option><option>Transkripsi</option><option>Acara</option></select><label for="pl">Lokasi</label><select id="pl"><option>Daring</option><option>Tempat umum (kampus, kafe)</option></select><p class="mute" style="font-size:12px">Tugas di rumah pribadi belum tersedia.</p><label for="pu">Upah (Rp)</label><input id="pu" type="number" value="50000" oninput="fee()"><div class="mute" id="fee" style="margin-top:4px"></div><label for="pd">Rincian pekerjaan</label><textarea id="pd" rows="3">Ketik 40 baris data dari lembar kertas ke Excel sesuai templat.</textarea><div class="err" id="er"></div><button class="btn" onclick="cek()">Lanjut ke pembayaran</button></div>`+(S.posted.length?`<h3 style="margin:8px 0">Tugas yang saya pasang</h3>`+S.posted.map(postedCard).join(''):'')}
+function postedCard(p,i){return `<div class="card"><div class="row sp"><b>${p.t}</b><span class="pill ${p.st=='Selesai'?'':'g'}">${p.st}</span></div><div class="mute">${rp(p.u)} tertahan</div>${p.st=='Menunggu Konfirmasi'?`<div class="cam" style="height:70px;margin-top:8px">Bukti kerja: 2 foto</div><button class="btn" onclick="S.posted[${i}].st='Selesai';toast('Dikonfirmasi. Dana cair ke pekerja');draw()">Konfirmasi selesai</button><button class="btn o" onclick="S.posted[${i}].st='Sengketa';toast('Dana dibekukan. Moderator meninjau');draw()">Tolak hasil</button>`:p.st=='Tayang'?`<button class="btn o" onclick="S.posted[${i}].st='Menunggu Konfirmasi';draw()">Demo: pekerja mengirim bukti</button>`:''}</div>`}
+function fee(){const u=+document.getElementById('pu').value||0;document.getElementById('fee').innerHTML=`Biaya layanan 8% (usulan): ${rp(Math.round(u*.08))} · Anda bayar <b>${rp(Math.round(u*1.08))}</b>`}
+function cek(){const t=(pj.value+' '+pd.value).toLowerCase();const bad=['joki','skripsi','ujian','judi','penagihan'].find(w=>t.includes(w));if(bad){er.textContent='Tugas ditolak: kata “'+bad+'” termasuk tugas terlarang (joki akademik dan sejenisnya).';return}S.draft={t:pj.value,u:+pu.value};sheet('bayar')}
+setTimeout(()=>{if(document.getElementById('pu'))fee()},0);
+const _d=draw;draw=function(){_d();if(document.getElementById('pu'))fee()};
+function tugasku(){
+ if(S.mode=='pasang'&&0)return'';
+ if(!S.taken)return `<div class="card mute">Belum ada tugas diambil. Cari tugas di Jelajah, lalu atur jadwal luang Anda.</div>`;
+ const t=TASKS.find(x=>x.id==S.taken),on=t.mode!='Daring';
+ const L=['Diambil',on?'Saya sudah tiba':'Mulai dikerjakan','Berlangsung','Menunggu konfirmasi','Selesai'];
+ const act=['<button class="btn" onclick="S.step=1;draw()">'+(on?'Saya sudah tiba (catat GPS)':'Mulai kerjakan')+'</button>','<div class="card" style="background:var(--soft);border:0">Menunggu '+(on?'pemberi tugas memindai kode QR kehadiran':'pemberi tugas')+'…</div><button class="btn o" onclick="S.step=2;draw()">Demo: kehadiran dikonfirmasi</button>','<button class="btn" onclick="go(\'bukti\')">Unggah bukti kerja</button><button class="btn d" onclick="sheet(\'foto\')">Orang tidak sesuai foto</button>','<div class="card" style="background:var(--goldsoft);border:0">Pemberi tugas punya 24 jam untuk konfirmasi. Jika tidak merespons, dana cair otomatis. Pengingat di jam ke-12 dan ke-20.</div><button class="btn o" onclick="S.step=5;S.saldo+='+Math.round(t.pay*.92)+';S.hist.unshift([\''+t.t+'\',\'+'+rp(Math.round(t.pay*.92))+'\']);draw()">Demo: pemberi mengonfirmasi</button>','',''];
+ const done=S.step>=5;
+ return `<div class="card"><div class="row sp"><b>${t.t}</b><span class="pill">${done?'Selesai':L[Math.min(S.step,4)]}</span></div><div class="mute">${t.when} · ${rp(t.pay)}</div><ul class="steps">${L.map((l,i)=>`<li class="${i<S.step||done?'done':i==S.step?'now':''}"><i>${i<S.step||done?'✓':''}</i>${l}</li>`).join('')}</ul>${done?`<div style="text-align:center"><div class="big">💸</div><div class="b">${rp(Math.round(t.pay*.92))} masuk ke dompet</div><div class="mute">Setelah biaya layanan 8%. Tugas masuk portofolio Anda.</div><div style="margin:10px 0;font-size:26px" role="radiogroup" aria-label="Beri rating">${[1,2,3,4,5].map(n=>`<button aria-label="${n} bintang" onclick="S.stars=${n};draw()" style="color:${n<=S.stars?'var(--gold)':'var(--line)'}">★</button>`).join('')}</div><div class="mute">Ulasan tayang setelah kedua pihak menilai.</div></div>`:act[S.step]}${!done?`<button class="btn o" onclick="sheet('batal')">Batalkan tugas</button>`:''}</div><button class="btn o" onclick="sheet('lapor')">Laporkan masalah</button>`}
+function profil(){return `<div class="card" style="text-align:center"><div class="av" style="margin:0 auto 8px;width:64px;height:64px;font-size:24px">N</div><h2>Nadina H.</h2><div class="mute">Bergabung Nov 2026</div><div style="margin-top:6px">${S.acct=='plus'?'<span class="pill">Terverifikasi · Plus</span>':'<span class="pill g">Basic · belum terverifikasi</span>'}</div></div><div class="row" style="gap:8px">${[['★ 4,9','Rating'],[S.hist.length+'','Tugas selesai'],['100%','Kehadiran']].map(x=>`<div class="card" style="flex:1;text-align:center;margin:0"><div class="price">${x[0]}</div><div class="mute" style="font-size:12px">${x[1]}</div></div>`).join('')}</div><h3 style="margin:14px 0 8px">Portofolio</h3>${S.hist.length?S.hist.map(x=>`<div class="card">${x[0]}</div>`).join('')+'<button class="btn o" onclick="toast(\'Portofolio PDF siap diunduh\')">Unduh untuk CV</button>':'<div class="card mute">Selesaikan tugas pertama untuk mengisi portofolio.</div>'}<div class="card mute" style="margin-top:10px;font-size:13px">Pihak lain hanya melihat nama panggilan, rating, dan lencana. NIK, alamat, nomor HP, dan rekening Anda tidak pernah ditampilkan.</div><button class="btn o" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme=='dark'?'light':'dark'">Ganti tema gelap/terang</button><button class="btn o" onclick="Object.assign(S,{acct:'basic',taken:null,step:0,saldo:0,hist:[],posted:[]});go('splash')">Keluar & ulangi demo</button>`}
+function SH(){const k=S.sheet,c=`<div class="shade" onclick="if(event.target==this){S.sheet=null;draw()}"><div class="sheet" role="dialog">`;
+ if(k=='ambil'){const t=TASKS.find(x=>x.id==S.task);return c+`<h2>Ambil tugas ini?</h2><p class="mute" style="margin:6px 0">${t.t} · ${rp(t.pay)}<br>${t.when}</p><div class="card" style="background:var(--soft);border:0">✓ Cocok dengan jadwal luang Anda<br>✓ Tidak bentrok dengan tugas lain<br>✓ Dalam batas jam kerja harian</div><p class="mute" style="font-size:12px">Pembatalan lebih dari 24 jam sebelum mulai gratis. Kurang dari 2 jam tanpa alasan sah mengurangi poin disiplin.</p><button class="btn" onclick="S.taken=${t.id};S.step=0;S.sheet=null;S.tab='tugas';toast('Tugas diambil. Deskripsi terkunci');go('main')">Ya, ambil tugas</button></div></div>`}
+ if(k=='bayar')return c+`<h2>Bayar dengan QRIS</h2><div class="cam" style="margin:10px 0;height:150px">QRIS · ${rp(Math.round(S.draft.u*1.08))}</div><p class="mute">Dana ditahan penyedia pembayaran berlisensi. Tugas tayang setelah pembayaran berhasil.</p><button class="btn" onclick="S.posted.unshift({t:S.draft.t,u:S.draft.u,st:'Tayang'});S.sheet=null;toast('Dana tertahan. Tugas sudah tayang');draw()">Saya sudah bayar</button></div></div>`;
+ if(k=='foto')return c+`<h2>Orang tidak sesuai foto?</h2><p class="mute" style="margin:6px 0">Tugas akan dibatalkan, dana kembali ke pemberi tugas, dan akun yang dilaporkan dibekukan untuk ditinjau. Jangan lanjutkan jika Anda merasa tidak aman.</p><button class="btn d" onclick="S.taken=null;S.sheet=null;toast('Tugas dibatalkan. Moderator meninjau laporan');go('main')">Ya, batalkan & laporkan</button><button class="btn o" onclick="S.sheet=null;draw()">Kembali</button></div></div>`;
+ if(k=='batal')return c+`<h2>Batalkan tugas?</h2>${['Bentrok jadwal','Sakit atau darurat (butuh bukti)','Tugas berbeda dari deskripsi','Lokasi terasa tidak aman'].map(x=>`<button class="opt" onclick="this.classList.toggle('on')">${x}</button>`).join('')}<button class="btn d" onclick="S.taken=null;S.sheet=null;toast('Tugas dibatalkan. Poin disiplin disesuaikan');draw()">Batalkan tugas</button></div></div>`;
+ return c+`<h2>Laporkan</h2><p class="mute">Pilih kategori. Laporan Darurat ditinjau lebih dulu.</p>${['Darurat (merasa terancam)','Penipuan atau akun pinjaman','Tugas tidak sesuai deskripsi','Tidak membayar atau tidak konfirmasi','Joki akademik','Ajakan transaksi di luar aplikasi'].map(x=>`<button class="opt" onclick="document.querySelectorAll('.opt').forEach(o=>o.classList.remove('on'));this.classList.add('on')">${x}</button>`).join('')}<label>Ceritakan singkat</label><textarea rows="2"></textarea><button class="btn" onclick="S.sheet=null;toast('Laporan diterima. Kami akan menghubungi Anda');draw()">Kirim laporan</button></div></div>`}
+draw();
+</script>
+</body>
+</html>

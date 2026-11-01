@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Citizen vs Citizen Journalism</title>
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--text:#1b2233;--muted:#5b6578;--line:#dfe3ec;--a:#1d5fd1;--b:#c2410c;--ok:#157347;--bad:#b42318;--abg:#e8f0fd;--bbg:#fdeee5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141c;--card:#181e2a;--text:#e8ecf4;--muted:#9aa5ba;--line:#2a3345;--a:#7aa8f5;--b:#f59a6b;--ok:#4cc38a;--bad:#f2837a;--abg:#1a2742;--bbg:#3a2418;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141c;--card:#181e2a;--text:#e8ecf4;--muted:#9aa5ba;--line:#2a3345;--a:#7aa8f5;--b:#f59a6b;--ok:#4cc38a;--bad:#f2837a;--abg:#1a2742;--bbg:#3a2418;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:40px 20px 28px;text-align:center;background:linear-gradient(135deg,var(--abg),var(--bbg))}
+header small{color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+h1{margin:8px auto 6px;max-width:760px;font-size:clamp(26px,5vw,40px);line-height:1.2}
+header p{margin:0 auto;max-width:620px;color:var(--muted)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+nav a{flex:none;padding:6px 12px;border-radius:99px;text-decoration:none;color:var(--text);font-size:14px;border:1px solid var(--line)}
+nav a:hover{border-color:var(--a)}
+main{max-width:860px;margin:0 auto;padding:12px 16px 60px}
+section{margin-top:28px}
+h2{font-size:24px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.grid .card h3{margin:0 0 4px;font-size:16px}
+.grid .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.5}
+.num{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;font-size:13px;font-weight:700;margin-bottom:6px}
+.ga .num{background:var(--abg);color:var(--a)}.gb .num{background:var(--bbg);color:var(--b)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:600px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;font-size:14.5px}
+th{background:var(--abg)}th:last-child{background:var(--bbg)}
+td:first-child{font-weight:600}
+.venn{display:block;margin:10px auto;max-width:420px;width:100%}
+.callout{border-left:4px solid var(--a);background:var(--abg)}
+.q{margin-top:14px}
+.q p{margin:0 0 8px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--a)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--card))}
+.fb{margin:6px 0 0;font-size:14px;color:var(--muted)}
+#score{margin-top:16px;font-weight:700;font-size:18px}
+button.reset{margin-top:10px;padding:8px 16px;border-radius:10px;border:1px solid var(--a);background:transparent;color:var(--a);font:inherit;cursor:pointer}
+ol,ul{padding-left:22px}
+footer{padding:24px 16px;text-align:center;color:var(--muted);font-size:14px}
+.refs{font-size:14px}.refs li{margin-bottom:6px}
+</style>
+</head>
+<body>
+<header>
+<small>Belajar di Era Digital · MKDI4202</small>
+<h1>Digital Citizen vs Citizen Journalism</h1>
+<p>Kenali perbedaan dan karakteristiknya. Waktu belajar sekitar 10 sampai 15 menit.</p>
+</header>
+<nav>
+<a href="#tujuan">Tujuan</a><a href="#dc">Digital citizen</a><a href="#cj">Citizen journalism</a><a href="#beda">Perbedaan</a><a href="#contoh">Contoh</a><a href="#kuis">Kuis</a><a href="#ref">Referensi</a>
+</nav>
+<main>
+
+<section id="tujuan">
+<h2>Apa yang akan kamu pelajari?</h2>
+<div class="card"><p style="margin-top:0">Setelah mempelajari media ini, kamu mampu:</p>
+<ol style="margin-bottom:0"><li>Menjelaskan pengertian digital citizen dan citizen journalism.</li><li>Membedakan keduanya.</li><li>Menyebutkan karakteristik masing-masing.</li><li>Menerapkan sikap bijak dalam menyebarkan informasi.</li></ol></div>
+</section>
+
+<section id="dc">
+<h2>Apa itu digital citizen?</h2>
+<div class="card callout"><p style="margin:0">Digital citizen (warga digital) adalah orang yang memakai internet dan teknologi digital secara teratur, efektif, dan bertanggung jawab untuk berpartisipasi dalam kehidupan sosial, ekonomi, politik, dan pendidikan (Mossberger et al., 2008). Intinya, digital citizen adalah <b>identitas</b> atau status sebagai anggota masyarakat di ruang digital.</p></div>
+<h3>Karakteristik digital citizen</h3>
+<div class="grid ga">
+<div class="card"><span class="num">1</span><h3>Akses dan kecakapan digital</h3><p>Mampu memakai perangkat, aplikasi, dan layanan digital secara efektif.</p></div>
+<div class="card"><span class="num">2</span><h3>Literasi informasi</h3><p>Menilai informasi secara kritis dan membedakan fakta dari hoaks.</p></div>
+<div class="card"><span class="num">3</span><h3>Etika dan etiket</h3><p>Berkomunikasi santun, menghormati perbedaan, tanpa perundungan siber.</p></div>
+<div class="card"><span class="num">4</span><h3>Hukum, hak, tanggung jawab</h3><p>Memahami UU ITE dan UU Pelindungan Data Pribadi, menghormati hak cipta.</p></div>
+<div class="card"><span class="num">5</span><h3>Keamanan dan privasi</h3><p>Melindungi data pribadi, kata sandi kuat, waspada penipuan.</p></div>
+<div class="card"><span class="num">6</span><h3>Komunikasi dan kolaborasi</h3><p>Memakai teknologi untuk bekerja sama dan berpartisipasi di masyarakat.</p></div>
+<div class="card"><span class="num">7</span><h3>Kesehatan digital</h3><p>Mengatur waktu layar dan menjaga kesejahteraan fisik serta mental.</p></div>
+<div class="card"><span class="num">8</span><h3>Jejak digital</h3><p>Sadar bahwa unggahan bertahan lama dan memengaruhi reputasi.</p></div>
+</div>
+</section>
+
+<section id="cj">
+<h2>Apa itu citizen journalism?</h2>
+<div class="card callout" style="border-left-color:var(--b);background:var(--bbg)"><p style="margin:0">Citizen journalism (jurnalisme warga) adalah kegiatan warga biasa yang bukan wartawan profesional dalam mengumpulkan, melaporkan, menganalisis, dan menyebarkan berita serta informasi (Bowman &amp; Willis, 2003; Gillmor, 2004). Intinya, citizen journalism adalah <b>aktivitas</b> memproduksi dan menyebarkan berita oleh warga.</p></div>
+<h3>Karakteristik citizen journalism</h3>
+<div class="grid gb">
+<div class="card"><span class="num">1</span><h3>Warga non-profesional</h3><p>Tidak harus berlatar belakang jurnalistik dan tidak terikat redaksi.</p></div>
+<div class="card"><span class="num">2</span><h3>Partisipatif dan kolaboratif</h3><p>Warga menjadi produsen sekaligus penyebar informasi.</p></div>
+<div class="card"><span class="num">3</span><h3>Cepat dan real-time</h3><p>Berada di lokasi kejadian sehingga dapat melapor lebih cepat.</p></div>
+<div class="card"><span class="num">4</span><h3>Berbasis platform digital</h3><p>Media sosial, blog, forum, dan siaran langsung.</p></div>
+<div class="card"><span class="num">5</span><h3>Hiperlokal</h3><p>Mengangkat isu sekitar yang sering luput dari media besar.</p></div>
+<div class="card"><span class="num">6</span><h3>Multimedia dan interaktif</h3><p>Memadukan teks, foto, video, dan audio.</p></div>
+<div class="card"><span class="num">7</span><h3>Sukarela, bermotif sosial</h3><p>Didorong kepedulian atau advokasi, bukan keuntungan.</p></div>
+<div class="card"><span class="num">8</span><h3>Kualitas terbatas</h3><p>Tidak selalu diverifikasi, jadi etika dan verifikasi sangat penting.</p></div>
+</div>
+</section>
+
+<section id="beda">
+<h2>Perbedaan keduanya</h2>
+<div class="tbl"><table>
+<thead><tr><th>Aspek</th><th>Digital citizen</th><th>Citizen journalism</th></tr></thead>
+<tbody>
+<tr><td>Hakikat</td><td>Identitas atau status warga di ruang digital</td><td>Aktivitas warga meliput dan menyebarkan berita</td></tr>
+<tr><td>Cakupan</td><td>Luas: belajar, bekerja, bertransaksi, bersosialisasi, urusan publik</td><td>Sempit: produksi dan penyebaran informasi</td></tr>
+<tr><td>Fokus utama</td><td>Kompetensi, etika, hak, tanggung jawab, keamanan</td><td>Pelaporan peristiwa kepada publik</td></tr>
+<tr><td>Pelaku</td><td>Setiap pengguna teknologi digital</td><td>Sebagian digital citizen yang aktif melapor</td></tr>
+<tr><td>Hasil</td><td>Perilaku digital yang cerdas, etis, aman; jejak digital</td><td>Berita, foto, video, tulisan, siaran langsung</td></tr>
+<tr><td>Pedoman</td><td>Etika digital, literasi digital, UU ITE, UU PDP</td><td>Akurasi, verifikasi, keberimbangan, kode etik jurnalistik</td></tr>
+<tr><td>Risiko utama</td><td>Perundungan siber, pelanggaran privasi, penipuan</td><td>Informasi tidak terverifikasi, hoaks, pencemaran nama baik</td></tr>
+<tr><td>Contoh</td><td>Memeriksa informasi sebelum membagikan, menjaga kata sandi</td><td>Merekam dan melaporkan banjir atau kecelakaan, menulis di Kompasiana</td></tr>
+</tbody></table></div>
+
+<h3>Hubungan keduanya</h3>
+<div class="card">
+<svg class="venn" viewBox="0 0 420 240" role="img" aria-label="Lingkaran kecil citizen journalism berada di dalam lingkaran besar digital citizen">
+<circle cx="210" cy="120" r="110" fill="var(--abg)" stroke="var(--a)" stroke-width="2"/>
+<circle cx="250" cy="130" r="62" fill="var(--bbg)" stroke="var(--b)" stroke-width="2"/>
+<text x="130" y="100" text-anchor="middle" fill="var(--text)" font-size="15" font-weight="700">Digital</text>
+<text x="130" y="119" text-anchor="middle" fill="var(--text)" font-size="15" font-weight="700">citizen</text>
+<text x="250" y="126" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">Citizen</text>
+<text x="250" y="143" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">journalism</text>
+</svg>
+<p style="margin-bottom:0">Citizen journalism adalah salah satu bentuk partisipasi digital citizen. Setiap citizen journalist seharusnya menjadi digital citizen yang baik, tetapi tidak semua digital citizen melakukan jurnalisme warga. Orang yang memakai internet hanya untuk belajar dan berbelanja adalah digital citizen, tetapi bukan citizen journalist.</p>
+</div>
+</section>
+
+<section id="contoh">
+<h2>Contoh di Indonesia</h2>
+<div class="card"><p style="margin-top:0"><b>Kompasiana</b> adalah platform tulisan warga yang memungkinkan siapa saja menulis dan membagikan opini serta pengalaman. <b>KawalPemilu 2014</b> melibatkan relawan warga untuk mengawasi dan mendokumentasikan hasil penghitungan suara secara terbuka.</p>
+<p style="margin-bottom:0">Keduanya menunjukkan bahwa digital citizen dapat berperan aktif menyampaikan informasi publik, tetapi harus tetap menjunjung etika, akurasi, dan tanggung jawab.</p></div>
+<h3>Coba pikirkan!</h3>
+<div class="card"><p style="margin-top:0">Kamu melihat kecelakaan di jalan dan sempat merekamnya. Apa yang kamu lakukan?</p>
+<ol style="margin-bottom:0"><li>Pastikan keselamatan diri dan korban lebih dahulu.</li><li>Jaga privasi korban, hindari menampilkan wajah dan identitas.</li><li>Verifikasi fakta, jangan berspekulasi soal penyebab.</li><li>Bagikan melalui kanal terpercaya dengan keterangan yang akurat.</li></ol></div>
+</section>
+
+<section id="kuis">
+<h2>Uji pemahamanmu</h2>
+<div class="card" id="quiz"></div>
+<div id="score"></div>
+<button class="reset" id="reset" type="button" hidden>Ulangi kuis</button>
+</section>
+
+<section id="ref">
+<h2>Rangkuman dan referensi</h2>
+<div class="card callout"><p style="margin:0"><b>Digital citizen adalah identitas, citizen journalism adalah aktivitas.</b> Keduanya sama-sama membutuhkan literasi, etika, dan tanggung jawab.</p></div>
+<ul class="refs card" style="margin-top:12px;list-style:none">
+<li>Allan, S., &amp; Thorsen, E. (Eds.). (2009). <i>Citizen journalism: Global perspectives</i>. Peter Lang.</li>
+<li>Bowman, S., &amp; Willis, C. (2003). <i>We media</i>. The Media Center at the American Press Institute.</li>
+<li>Gillmor, D. (2004). <i>We the media</i>. O’Reilly Media.</li>
+<li>Kementerian Komunikasi dan Informatika RI. (2021). <i>Peta jalan literasi digital 2021–2024</i>.</li>
+<li>Mossberger, K., Tolbert, C. J., &amp; McNeal, R. S. (2008). <i>Digital citizenship</i>. MIT Press.</li>
+<li>Ribble, M. (2015). <i>Digital citizenship in schools</i> (3rd ed.). ISTE.</li>
+</ul>
+</section>
+</main>
+<footer>Disusun oleh Wirdatus Sholihah (053193573) · Program Studi Ilmu Administrasi Bisnis · Universitas Terbuka</footer>
+
+<script>
+var Q=[
+{q:"Pernyataan yang paling tepat tentang hubungan digital citizen dan citizen journalism adalah ...",o:["Keduanya sama persis.","Citizen journalism adalah salah satu bentuk partisipasi digital citizen.","Digital citizen adalah wartawan profesional.","Citizen journalism lebih luas daripada digital citizen."],a:1,e:"Digital citizen mencakup seluruh peran di ruang digital, dan citizen journalism hanya salah satunya."},
+{q:"Ciri utama citizen journalism adalah ...",o:["Dilakukan wartawan redaksi saja.","Hanya untuk keuntungan.","Dilakukan warga non-profesional dengan platform digital.","Tidak memerlukan etika."],a:2,e:"Pelakunya warga biasa yang memakai media sosial, blog, atau siaran langsung."},
+{q:"Sebelum membagikan video kejadian, langkah yang paling tepat adalah ...",o:["Langsung membagikan.","Memverifikasi kebenaran dan mempertimbangkan privasi.","Menambah judul sensasional.","Menunggu banyak suka."],a:1,e:"Verifikasi dan penghormatan privasi mencegah hoaks dan pelanggaran hak orang lain."},
+{q:"Contoh perilaku digital citizen yang baik adalah ...",o:["Membagikan kata sandi.","Mengomentari dengan kasar.","Memeriksa sumber informasi sebelum membagikan.","Menyebarkan data pribadi orang lain."],a:2,e:"Memeriksa sumber mencerminkan literasi informasi dan tanggung jawab."},
+{q:"Hal yang bukan karakteristik citizen journalism adalah ...",o:["Cepat dan real-time.","Partisipatif.","Berbasis platform digital.","Pasti terverifikasi oleh redaksi."],a:3,e:"Jurnalisme warga umumnya tidak melalui verifikasi redaksi, sehingga etika pembuatnya sangat penting."}
+];
+var L=["A","B","C","D"],done=0,score=0,box=document.getElementById("quiz");
+function build(){
+  box.innerHTML="";done=0;score=0;
+  document.getElementById("score").textContent="";
+  document.getElementById("reset").hidden=true;
+  Q.forEach(function(it,i){
+    var d=document.createElement("div");d.className="q";
+    var p=document.createElement("p");p.textContent=(i+1)+". "+it.q;d.appendChild(p);
+    var fb=document.createElement("p");fb.className="fb";
+    it.o.forEach(function(t,j){
+      var b=document.createElement("button");b.type="button";b.className="opt";b.textContent=L[j]+". "+t;
+      b.onclick=function(){
+        var bs=d.querySelectorAll(".opt");
+        bs.forEach(function(x,k){x.disabled=true;if(k===it.a)x.classList.add("ok")});
+        if(j===it.a){score++;fb.textContent="Benar. "+it.e}else{b.classList.add("bad");fb.textContent="Belum tepat. "+it.e}
+        done++;
+        if(done===Q.length){
+          document.getElementById("score").textContent="Skormu: "+score+" dari "+Q.length;
+          document.getElementById("reset").hidden=false;
+        }
+      };
+      d.appendChild(b);
+    });
+    d.appendChild(fb);box.appendChild(d);
+  });
+}
+document.getElementById("reset").onclick=build;
+build();
+</script>
+</body>
+</html>
